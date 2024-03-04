@@ -1,0 +1,92 @@
+[
+	{
+		"id": 0,
+		"title": "Pack x 10 Echeveria",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
+		"price": 15000,
+		"thumbnail": "https://i.ibb.co/Lp154j4/echeveria.jpg",
+		"code": "packp0",
+		"stock": 50
+	},
+	{
+		"id": 1,
+		"title": "Set Macetas Halloween",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
+		"price": 52000,
+		"thumbnail": "imagen de macetas halloween",
+		"code": "setm0",
+		"stock": 30
+	},
+	{
+		"id": 2,
+		"title": "Maceta Globo",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
+		"price": 89000,
+		"thumbnail": "imagen de macetas globo",
+		"code": "maceta0",
+		"stock": 30
+	},
+	{
+		"id": 3,
+		"title": "Potus",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
+		"price": 89000,
+		"thumbnail": "imagen de potus",
+		"code": "planta0",
+		"stock": 30
+	},
+	{
+		"id": 4,
+		"title": "Haworthia",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
+		"price": 89000,
+		"thumbnail": "imagen de haworthia",
+		"code": "planta1",
+		"stock": 30
+	},
+	{
+		"id": 5,
+		"title": "Maceta Escamas",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
+		"price": 89000,
+		"thumbnail": "imagen de maceta escamas",
+		"code": "maceta1",
+		"stock": 30
+	},
+	{
+		"id": 6,
+		"title": "Pack x 15 Suculentas y Cactus",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
+		"price": 89000,
+		"thumbnail": "imagen de suculentas y cactus",
+		"code": "packp1",
+		"stock": 30
+	},
+	{
+		"id": 7,
+		"title": "Sansevieria",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
+		"price": 89000,
+		"thumbnail": "imagen de sansevieria",
+		"code": "planta2",
+		"stock": 30
+	},
+	{
+		"id": 8,
+		"title": "Maceta Flowers",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
+		"price": 89000,
+		"thumbnail": "imagen de biblioteca",
+		"code": "maceta2",
+		"stock": 30
+	},
+	{
+		"id": 9,
+		"title": "Alocasia Calcutta",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
+		"price": 89000,
+		"thumbnail": "imagen de biblioteca",
+		"code": "planta3",
+		"stock": 30
+	}
+]
