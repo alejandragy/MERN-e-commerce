@@ -1,31 +1,16 @@
 import express from 'express';
-import ProductManager from './ProductManager.js';
+import productsRouter from './routes/products.router.js';
+import cartsRouter from './routes/carts.router.js'
 
 const app = express();
 const PORT = 8080; 
 
-const manager = new ProductManager(`products.json`); 
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
+app.use('/api/products', productsRouter);
 
-app.get('/products', async (req, res) => {
-    let products = await manager.getProducts();
-    const {limit} = req.query;
-
-    if(limit){
-        products = products.slice(0, limit);
-    }
-
-    res.send(products);
-});
-
-app.get('/products/:productId', async (req, res) => {
-    const productId = req.params.productId;
-
-    let product = await manager.getProductById(productId);
-
-    product ? res.send(product) : console.error('Producto no encontrado');
-
-})
+app.use('/api/carts', cartsRouter);
 
 
 app.listen(PORT, () => {

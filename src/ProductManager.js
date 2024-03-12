@@ -1,27 +1,35 @@
 import fs from 'fs';
 
 class ProductManager {
-    #id = 0;
     constructor(path) {
         this.products = [];
         this.path = path;
     }
 
+    async generateId () {
+        const products = await this.getProducts();
 
-    async addProduct(title, description, price, thumbnail, code, stock) {
+        if (products.length > 0) {
+            return parseInt(products[products.length - 1].id + 1);
+        } else {
+            return 1;
+        }
+    }
+
+    async addProduct({title, description, price, status, thumbnail, code, stock, category}) {
         try {
             this.products = await this.getProducts(); //reviso la lista actualizada de productos.
 
-            if (!this.products.find(product => product.code === code)) {
-
                 const product = {
-                    id: this.#id++,
+                    id: await this.generateId(),
                     title,
                     description,
                     price,
+                    status: status ?? true,
                     thumbnail,
                     code,
-                    stock
+                    stock,
+                    category
                 }
 
                 this.products.push(product);
@@ -30,11 +38,6 @@ class ProductManager {
                 console.log('El producto ha sido agregado!');
 
                 return product;
-            }
-            else {
-                console.error('No puede repetirse el código del producto!');
-            }
-
         } catch (error) {
             console.error('Error al agregar producto', error);
         }
