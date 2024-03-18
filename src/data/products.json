@@ -1,23 +1,27 @@
 [
 	{
 		"id": 0,
-		"title": "Pack x 10 Echeveria",
+		"title": "Echeverias - Pack x 4",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
 		"price": 15000,
 		"status": true,
-		"thumbnail": "https://i.ibb.co/Lp154j4/echeveria.jpg",
+		"thumbnails": [
+			"public\\img\\products\\pack-echeverias.png"
+		],
 		"code": "packp0",
 		"stock": 50,
 		"category": "plantas"
 	},
 	{
 		"id": 1,
-		"title": "Set Macetas Halloween",
+		"title": "Maceta Calavera",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
 		"price": 18000,
 		"status": true,
-		"thumbnail": "imagen de macetas halloween",
-		"code": "setm0",
+		"thumbnails": [
+			"public\\img\\products\\calavera.png"
+		],
+		"code": "maceta0",
 		"stock": 30,
 		"category": "macetas"
 	},
@@ -27,8 +31,10 @@
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
 		"price": 6000,
 		"status": true,
-		"thumbnail": "imagen de macetas globo",
-		"code": "maceta0",
+		"thumbnails": [
+			"public\\img\\maceta-globo.png"
+		],
+		"code": "maceta1",
 		"stock": 60,
 		"category": "macetas"
 	},
@@ -38,7 +44,9 @@
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
 		"price": 8900,
 		"status": true,
-		"thumbnail": "imagen de potus",
+		"thumbnails": [
+			"public\\img\\potus.png"
+		],
 		"code": "planta0",
 		"stock": 30,
 		"category": "plantas"
@@ -49,29 +57,36 @@
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
 		"price": 4000,
 		"status": true,
-		"thumbnail": "imagen de haworthia",
+		"thumbnails": [
+			"public\\img\\haworthia.png"
+		],
 		"code": "planta1",
 		"stock": 20,
 		"category": "plantas"
 	},
 	{
 		"id": 5,
-		"title": "Maceta Escamas",
+		"title": "Maceta Murciélago",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
 		"price": 5000,
 		"status": true,
-		"thumbnail": "imagen de maceta escamas",
-		"code": "maceta1",
+		"thumbnails": [
+			"public\\img\\maceta-murcielago1.png",
+			"public\\img\\maceta-murcielago2.png"
+		],
+		"code": "maceta2",
 		"stock": 20,
 		"category": "macetas"
 	},
 	{
 		"id": 6,
-		"title": "Pack x 15 Suculentas y Cactus",
+		"title": "Cactus - Pack x 8",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
 		"price": 20000,
 		"status": true,
-		"thumbnail": "imagen de suculentas y cactus",
+		"thumbnails": [
+			"public\\img\\pack-cactus.png"
+		],
 		"code": "packp1",
 		"stock": 30,
 		"category": "plantas"
@@ -82,30 +97,36 @@
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
 		"price": 6000,
 		"status": true,
-		"thumbnail": "imagen de sansevieria",
+		"thumbnails": [
+			"public\\img\\sansevieria.png"
+		],
 		"code": "planta2",
 		"stock": 30,
 		"category": "plantas"
 	},
 	{
 		"id": 8,
-		"title": "Maceta Flowers",
+		"title": "Ficus",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
 		"price": 2000,
 		"status": true,
-		"thumbnail": "imagen de maceta flowers",
-		"code": "maceta2",
+		"thumbnails": [
+			"public\\img\\ficus.png"
+		],
+		"code": "planta3",
 		"stock": 40,
-		"category": "macetas"
+		"category": "plantas"
 	},
 	{
 		"id": 9,
-		"title": "Alocasia Calcutta",
+		"title": "Alocasia Cucullata",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
 		"price": 16000,
 		"status": true,
-		"thumbnail": "imagen de alocasia calcutta",
-		"code": "planta3",
+		"thumbnails": [
+			"public\\img\\alocasia-cucullata.png"
+		],
+		"code": "planta4",
 		"stock": 10,
 		"category": "plantas"
 	}

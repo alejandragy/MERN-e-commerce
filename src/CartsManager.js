@@ -76,7 +76,8 @@ class CartsManager {
 
                 if (existingProduct) {
                     existingProduct.quantity += quantity;
-                } else {
+                } 
+                else {
                     existingCart.products.push({
                         id: product.id,
                         quantity: quantity
@@ -85,15 +86,13 @@ class CartsManager {
                 await fs.promises.writeFile(this.path, JSON.stringify(carts, null, '\t'));
                 return console.log('Carrito actualizado');
             } else {
-                console.error('No se encontró el carrito');
+                return console.error('No se encontró el carrito');
             }
         } catch (error) {
             console.error('Error al agregar producto', error);
         }
 
     }
-
-
 
 }
 

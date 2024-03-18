@@ -16,7 +16,7 @@ class ProductManager {
         }
     }
 
-    async addProduct({title, description, price, status, thumbnail, code, stock, category}) {
+    async addProduct({title, description, price, status, thumbnails, code, stock, category}) {
         try {
             this.products = await this.getProducts(); //reviso la lista actualizada de productos.
 
@@ -26,7 +26,7 @@ class ProductManager {
                     description,
                     price,
                     status: status ?? true,
-                    thumbnail,
+                    thumbnails,
                     code,
                     stock,
                     category

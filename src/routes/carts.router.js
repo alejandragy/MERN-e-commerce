@@ -3,8 +3,8 @@ import CartsManager from '../CartsManager.js';
 import ProductManager from '../ProductManager.js';
 
 const router = Router();
-const cartManager = new CartsManager('./data/carts.json');
-const productManager = new ProductManager('./data/products.json');
+const cartManager = new CartsManager('src/data/carts.json');
+const productManager = new ProductManager('src/data/products.json');
 
 router.get('/', async (req, res) => {
     try {

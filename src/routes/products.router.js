@@ -1,8 +1,9 @@
 import { Router } from 'express';
+import { uploader } from '../utils.js';
 import ProductManager from '../ProductManager.js';
 
 const router = Router();
-const manager = new ProductManager('./data/products.json')
+const manager = new ProductManager('src/data/products.json')
 
 router.get('/', async (req, res) => {
     try {
@@ -32,19 +33,23 @@ router.get('/:productId', async (req, res) => {
 
 });
 
-router.post('/', async (req, res) => {
+router.post('/',uploader.array('thumbnails', 2), async (req, res) => {
     try {
-        const { title, description, code, price, status, stock, category, thumbnail } = req.body;
+        const { title, description, code, price, status, stock, category} = req.body;
         const existingProducts = await manager.getProducts();
+        const thumbnails = req.files.map(file => file.path);
 
+        if (thumbnails.length == 0){
+            return res.status(400).send({error: 'Se debe cargar al menos una imagen'});
+        }
         if (existingProducts.find(product => product.code === code)) {
             return res.status(400).send({ error: 'Ya existe un producto con el code especificado' });
         }
-        if (!title || !description || !code || !price || !stock || !category || !thumbnail) {
+        if (!title || !description || !code || !price || !stock || !category) {
            return res.status(400).send({ error: 'Faltan datos para añadir producto' });
         }
 
-        await manager.addProduct(req.body);
+        await manager.addProduct({ title, description, code, price, status, stock, category, thumbnails });
         return res.status(201).send({ message: `Producto -${title}- añadido` });
     } catch (error) {
         return res.status(500).send({ error: 'Error interno del servidor' });
