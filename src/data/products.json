@@ -3,10 +3,10 @@
 		"id": 0,
 		"title": "Echeverias - Pack x 4",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
-		"price": 15000,
+		"price": 6000,
 		"status": true,
 		"thumbnails": [
-			"public\\img\\products\\pack-echeverias.png"
+			"\\img\\products\\pack-echeverias.png"
 		],
 		"code": "packp0",
 		"stock": 50,
@@ -16,10 +16,10 @@
 		"id": 1,
 		"title": "Maceta Calavera",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
-		"price": 18000,
+		"price": 10000,
 		"status": true,
 		"thumbnails": [
-			"public\\img\\products\\calavera.png"
+			"\\img\\products\\calavera.png"
 		],
 		"code": "maceta0",
 		"stock": 30,
@@ -32,7 +32,7 @@
 		"price": 6000,
 		"status": true,
 		"thumbnails": [
-			"public\\img\\maceta-globo.png"
+			"\\img\\products\\maceta-globo.png"
 		],
 		"code": "maceta1",
 		"stock": 60,
@@ -45,7 +45,7 @@
 		"price": 8900,
 		"status": true,
 		"thumbnails": [
-			"public\\img\\potus.png"
+			"\\img\\products\\potus.png"
 		],
 		"code": "planta0",
 		"stock": 30,
@@ -58,7 +58,7 @@
 		"price": 4000,
 		"status": true,
 		"thumbnails": [
-			"public\\img\\haworthia.png"
+			"\\img\\products\\haworthia.png"
 		],
 		"code": "planta1",
 		"stock": 20,
@@ -68,11 +68,11 @@
 		"id": 5,
 		"title": "Maceta Murciélago",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
-		"price": 5000,
+		"price": 13000,
 		"status": true,
 		"thumbnails": [
-			"public\\img\\maceta-murcielago1.png",
-			"public\\img\\maceta-murcielago2.png"
+			"\\img\\products\\maceta-murcielago1.png",
+			"\\img\\products\\maceta-murcielago2.png"
 		],
 		"code": "maceta2",
 		"stock": 20,
@@ -82,10 +82,10 @@
 		"id": 6,
 		"title": "Cactus - Pack x 8",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
-		"price": 20000,
+		"price": 15000,
 		"status": true,
 		"thumbnails": [
-			"public\\img\\pack-cactus.png"
+			"\\img\\products\\pack-cactus.png"
 		],
 		"code": "packp1",
 		"stock": 30,
@@ -98,7 +98,7 @@
 		"price": 6000,
 		"status": true,
 		"thumbnails": [
-			"public\\img\\sansevieria.png"
+			"\\img\\products\\sansevieria.png"
 		],
 		"code": "planta2",
 		"stock": 30,
@@ -108,10 +108,10 @@
 		"id": 8,
 		"title": "Ficus",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
-		"price": 2000,
+		"price": 11000,
 		"status": true,
 		"thumbnails": [
-			"public\\img\\ficus.png"
+			"\\img\\products\\ficus.png"
 		],
 		"code": "planta3",
 		"stock": 40,
@@ -121,10 +121,10 @@
 		"id": 9,
 		"title": "Alocasia Cucullata",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.",
-		"price": 16000,
+		"price": 9000,
 		"status": true,
 		"thumbnails": [
-			"public\\img\\alocasia-cucullata.png"
+			"\\img\\products\\alocasia-cucullata.png"
 		],
 		"code": "planta4",
 		"stock": 10,

@@ -1,0 +1,18 @@
+<div>
+    <div class="cards-products">
+        {{#each products}}
+        <div class="card-product">
+            <div class="card-product__img">
+                <img src="{{this.thumbnails.[0]}}" alt="{{this.title}}">
+            </div>
+            <div>
+                <p class="card-product__title">{{this.title}} </p>
+                <p class="card-product__price">${{this.price}} </p>
+            </div>
+            <div class="card-product__btn">
+                <button><img src="img/icons/ver.png" alt="icono de ver"></button>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
