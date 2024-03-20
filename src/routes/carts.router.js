@@ -55,7 +55,7 @@ router.post('/:cartId/product/:productId', async (req, res) => {
             return res.status(400).send({error: 'No existe el carrito'});
         }
 
-        await cartManager.addProductToCart(cart, productToAdd, 1);
+        await cartManager.addProductToCart(cart, productToAdd);
         return res.status(200).send({message: 'Producto añadido al carrito'});
 
     } catch (error) {

@@ -65,7 +65,7 @@ class CartsManager {
         }
     }
 
-    async addProductToCart(cart, product, quantity) {
+    async addProductToCart(cart, product) {
         try {
             const carts = await this.getCarts();
             
@@ -75,12 +75,12 @@ class CartsManager {
                 const existingProduct = existingCart.products.find(p => p.id === product.id);
 
                 if (existingProduct) {
-                    existingProduct.quantity += quantity;
+                    existingProduct.quantity += 1;
                 } 
                 else {
                     existingCart.products.push({
                         id: product.id,
-                        quantity: quantity
+                        quantity: 1,
                     })
                 }
                 await fs.promises.writeFile(this.path, JSON.stringify(carts, null, '\t'));
