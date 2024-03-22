@@ -2,7 +2,7 @@ const socket = io();
 
 const cardsDiv = document.querySelector('#cardsDiv');
 const productForm = document.querySelector('#newProductForm');
-const productFormBtns = document.querySelectorAll('.card-product__btn--delete');
+const productFormBtns = document.querySelectorAll('.delete__btn');
 
 productForm.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -12,6 +12,7 @@ productForm.addEventListener('submit', function (event) {
 productFormBtns.forEach(btn => {
     btn.addEventListener('click', function(){
         const productId = btn.closest('.card-product').id;
+        console.log(btn);
         deleteProduct(productId);
     })
 })
