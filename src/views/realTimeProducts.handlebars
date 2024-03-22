@@ -31,7 +31,7 @@
     </div>
     <div class="cards-products" id="cardsDiv">
         {{#each products}}
-        <div class="card-product">
+        <div class="card-product" id="{{this.id}}">
             <div class="card-product__img">
                 <img src="{{this.thumbnails.[0]}}" alt="{{this.title}}">
             </div>
@@ -41,6 +41,9 @@
             </div>
             <div class="card-product__btn">
                 <button><img src="img/icons/ver.png" alt="icono de ver"></button>
+            </div>
+            <div class="card-product__btn card-product__btn--delete">
+                <button><img src="img/icons/borrar.png" alt="icono de ver"></button>
             </div>
         </div>
         {{/each}}

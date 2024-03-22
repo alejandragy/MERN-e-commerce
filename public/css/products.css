@@ -65,6 +65,15 @@
     transition: transform 0.3s;
     opacity: 0;
 }
+
+.card-product__btn--delete{
+    top: 15px;
+}
+
+.card-product__btn--delete button{
+    background-color: #cc3939;
+}
+
 .card-product__btn img{
     width: 20px;
 }

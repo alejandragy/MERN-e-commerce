@@ -34,7 +34,10 @@ io.on('connection', socket => {
     console.log('Nuevo cliente conectado');
 
     socket.on('newProductAdded', data => {
-        console.log('mellego la dataaaaa aaa xfin');
         io.emit('newProductAddedToDOM', data);
     })
+
+    socket.on('productDeleted', data => {
+        io.emit('productDeletedOfDOM', data);
+    } )
 })
