@@ -83,3 +83,24 @@
 }
 
 /*formulario para nuevos productos*/
+.real-time__container{
+    display: flex;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    width: 300px;
+    padding: 20px;
+}
+.form form{
+    width: 100%;
+}
+.form__title{ 
+    font-weight: bold;
+}
+
+.form form input {
+    width: 150px;
+}
