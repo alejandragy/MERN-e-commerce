@@ -9,7 +9,7 @@ const productManager = new ProductManager('src/data/products.json');
 router.get('/', async (req, res) => {
     try {
         const carts = await cartManager.getCarts();
-        res.status(201).send(carts);
+        res.status(200).send(carts);
     } catch (error) {
         return res.status(500).send({ error: 'Error interno del servidor' });
     }

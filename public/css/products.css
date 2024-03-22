@@ -1,3 +1,4 @@
+/*cards de productos*/
 .cards-products{
     display: flex;
     flex-wrap: wrap;
@@ -27,11 +28,12 @@
 }
 
 .card-product__img{
+    min-width: 200px;
     max-width: 200px;
     min-height: 200px;
     max-height: 200px;
     overflow: hidden;
-    border-bottom:  0.5px solid rgba(84, 84, 84, 0.452);
+    border-bottom:  0.5px solid #7d7d7d;
 }
 
 .card-product__img img{
@@ -70,3 +72,5 @@
 .card-product__btn button:hover {
     transform: scale(1.1);
 }
+
+/*formulario para nuevos productos*/

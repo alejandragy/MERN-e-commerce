@@ -129,5 +129,32 @@
 		"code": "planta4",
 		"stock": 10,
 		"category": "plantas"
+	},
+	{
+		"id": 10,
+		"title": "GATITO",
+		"description": "GATATAT",
+		"price": "877",
+		"status": "BFJSBJ",
+		"thumbnails": [
+			"\\img\\products\\gatito.jpeg"
+		],
+		"code": "8678H76",
+		"stock": "687",
+		"category": "BJH"
+	},
+	{
+		"id": 11,
+		"title": "PERRITETYGATITE",
+		"description": "456387",
+		"price": "677",
+		"status": "FBSJ",
+		"thumbnails": [
+			"\\img\\products\\cheems.jpeg",
+			"\\img\\products\\gatito.jpeg"
+		],
+		"code": "67868",
+		"stock": "7687",
+		"category": "BJBF76"
 	}
 ]

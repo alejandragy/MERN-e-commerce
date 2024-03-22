@@ -51,9 +51,9 @@ router.post('/',uploader.array('thumbnails', 2), async (req, res) => {
         }
 
         await manager.addProduct({ title, description, code, price, status, stock, category, thumbnails: thumbnailsProcessedRoutes });
-        return res.status(201).send({ message: `Producto -${title}- añadido` });
+        return res.status(201).send({ message: `Producto -${title}- añadido`});
     } catch (error) {
-        return res.status(500).send({ error: 'Error interno del servidor' });
+        return res.status(500).send({ error: 'Error interno del servidor'});
     }
 })
 
@@ -74,7 +74,7 @@ router.delete('/:productId', async (req, res) => {
         const productId = req.params.productId;
 
         await manager.deleteProduct(parseInt(productId));
-        return res.status(201).send({ message: 'Producto eliminado' });
+        return res.status(200).send({ message: 'Producto eliminado' });
     } catch (error) {
         return res.status(500).send({ error: 'Error interno del servidor' });
     }
