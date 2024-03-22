@@ -26,15 +26,15 @@
             <label for="thumbnails">Thumbnails</label>
             <input type="file" name="thumbnails" multiple required>
 
-            <button>Añadir producto</button>
+            <button class="form__btn">Añadir producto</button>
         </form>
     </div>
     <div class="cards-products" id="cardsDiv">
         {{#each products}}
         <div class="card-product" id="{{this.id}}">
-            <div class="card-product__img">
+            <picture class="card-product__img">
                 <img src="{{this.thumbnails.[0]}}" alt="{{this.title}}">
-            </div>
+            </picture>
             <div>
                 <p class="card-product__title">{{this.title}} </p>
                 <p class="card-product__price">${{this.price}} </p>

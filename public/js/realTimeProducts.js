@@ -85,9 +85,9 @@ function deleteProduct(productId) {
 socket.on('newProductAddedToDOM', data => {
     cardsDiv.innerHTML += (` 
     <div class="card-product" id="${data.id}">
-        <div class="card-product__img">
+        <picture class="card-product__img">
         <img src="${data.thumbnails[0]}" alt="${data.title}">
-        </div>
+        </picture>
         <div>
             <p class="card-product__title">${data.title}</p>
             <p class="card-product__price">$${data.price}</p>
