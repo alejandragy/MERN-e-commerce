@@ -1,11 +1,11 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
+import mongoose from 'mongoose';
 import __dirname from './utils.js';
 
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import viewsRouter from './routes/views.router.js';
-
 
 import { Server } from 'socket.io';
 
@@ -15,6 +15,8 @@ const httpServer = app.listen(PORT, () => {
     console.log(`Servidor activo en http://localhost:${PORT}`);
 }) 
 const io = new Server(httpServer);
+const uri = 'mongodb+srv://alegarcia:kali1234@cluster0.ujuurkx.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0'
+mongoose.connect(uri);
 
 app.engine('handlebars', handlebars.engine());
 

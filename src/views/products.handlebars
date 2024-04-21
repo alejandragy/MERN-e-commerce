@@ -1,5 +1,6 @@
-<div>
-    <div class="cards-products">
+<div class="container">
+    {{#if isValid}}
+    <div class="cards-products" id="cardsDiv">
         {{#each products}}
         <div class="card-product">
             <div class="card-product__img">
@@ -15,4 +16,17 @@
         </div>
         {{/each}}
     </div>
+    <div>
+        {{#if hasPrevPage}}
+        <a href="{{this.prevLink}}">Anterior</a>
+        {{/if}}
+        {{#if hasNextPage}}
+        <a href="{{this.nextLink}}">Siguiente</a>
+        {{/if}}
+    </div>
+    {{else}}
+    <div class="container">
+        <p>No hay páginas para mostrar</p>
+    </div>
+    {{/if}}
 </div>

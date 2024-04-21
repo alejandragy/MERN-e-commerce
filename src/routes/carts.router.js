@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import CartsManager from '../managers/CartsManager.js';
-import ProductManager from '../managers/ProductManager.js';
+import CartsManager from '../dao/CartsManager.js';
+import ProductManager from '../dao/ProductManager.js';
 
 const router = Router();
-const cartManager = new CartsManager('src/data/carts.json');
-const productManager = new ProductManager('src/data/products.json');
+const cartManager = new CartsManager();
+const productManager = new ProductManager();
 
 router.get('/', async (req, res) => {
     try {
@@ -33,7 +33,7 @@ router.get('/:cartId', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        await manager.createCart();
+        await cartManager.createCart();
         res.status(201).send({ message: 'Carrito creado' });
     } catch (error) {
         return res.status(500).send({ error: 'Error interno del servidor' });

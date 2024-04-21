@@ -17,6 +17,7 @@ productFormBtns.forEach(btn => {
     })
 })
 
+
 function createProduct() {
     const formData = new FormData(productForm); // Recopila los datos del formulario
 
@@ -34,9 +35,10 @@ function createProduct() {
             }
         })
         .catch(error => {
-            console.error('Error al añadir producto', error);
+            console.error('Error al añadir producto', error.message);
         })
 }
+
 
 function showNewProductDOM() {
     fetch('/api/products')
@@ -46,15 +48,18 @@ function showNewProductDOM() {
             }
             else {
                 console.error('Error al obtener productos');
+                console.log(data)
             }
         })
         .then(data => {
-            if (data.length > 0) {
-                const newProduct = data[data.length - 1];
-                console.log('ultimo producto es', newProduct);
-                socket.emit('newProductAdded', newProduct);
-            }
-            else {
+            console.log(data)
+            if (data.payload.length > 0) {
+                const newProduct = data.payload[data.payload.length - 1];
+                console.log(newProduct)
+                console.log('El último producto es', newProduct);
+                socket.emit('newProductAdded',  newProduct);
+                //esto no va a funcionar nunca porque el paginate me limita las vistas a 5 y data está devolviendo esos 5 elementos primeros
+            } else {
                 console.error('No hay productos');
             }
         })
@@ -64,7 +69,10 @@ function showNewProductDOM() {
 
 }
 
+
 function deleteProduct(productId) {
+    
+    console.log(productId)
 
     fetch(`/api/products/${productId}`, {
         method: 'DELETE'
@@ -84,7 +92,7 @@ function deleteProduct(productId) {
 
 socket.on('newProductAddedToDOM', data => {
     cardsDiv.innerHTML += (` 
-    <div class="card-product" id="${data.id}">
+    <div class="card-product" id="${data._id}">
         <picture class="card-product__img">
         <img src="${data.thumbnails[0]}" alt="${data.title}">
         </picture>
@@ -96,7 +104,7 @@ socket.on('newProductAddedToDOM', data => {
             <button><img src="img/icons/ver.png" alt="icono de ver"></button>
         </div>
         <div class="card-product__btn card-product__btn--delete">
-            <button onclick="deleteProduct(${data.id})""><img src="img/icons/borrar.png" alt="icono de ver"></button>
+            <button onclick="deleteProduct(${data._id})""><img src="img/icons/borrar.png" alt="icono de ver"></button>
         </div>
     </div>`);
     

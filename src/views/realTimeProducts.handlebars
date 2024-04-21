@@ -1,7 +1,7 @@
 <div class="real-time__container">
     <div class="form">
         <p class="form__title">Añadir un nuevo producto</p>
-        <form  action="/realtimeproducts" method="post" enctype="multipart/form-data" id="newProductForm">
+        <form action="/realtimeproducts" method="post" enctype="multipart/form-data" id="newProductForm">
             <label for="title">Title</label>
             <input type="text" name="title">
 
@@ -12,7 +12,10 @@
             <input type="number" name="price">
 
             <label for="status">Status</label>
-            <input type="text" name="status">
+            <select id="status" name="status">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
 
             <label for="code">Code</label>
             <input type="text" name="code">
@@ -21,7 +24,10 @@
             <input type="number" name="stock">
 
             <label for="category">Category</label>
-            <input type="text" name="category">
+            <select id="category" name="category" required>
+                <option value="plantas">Plantas</option>
+                <option value="macetas">Macetas</option>
+            </select>
 
             <label for="thumbnails">Thumbnails</label>
             <input type="file" name="thumbnails" multiple required>
@@ -29,9 +35,10 @@
             <button class="form__btn">Añadir producto</button>
         </form>
     </div>
+    {{#if isValid}}
     <div class="cards-products" id="cardsDiv">
         {{#each products}}
-        <div class="card-product" id="{{this.id}}">
+        <div class="card-product" id="{{this._id}}">
             <picture class="card-product__img">
                 <img src="{{this.thumbnails.[0]}}" alt="{{this.title}}">
             </picture>
@@ -48,6 +55,19 @@
         </div>
         {{/each}}
     </div>
+    <div class="container">
+        {{#if hasPrevPage}}
+        <a href="{{this.prevLink}}">Anterior</a>
+        {{/if}}
+        {{#if hasNextPage}}
+        <a href="{{this.nextLink}}">Siguiente</a>
+        {{/if}}
+    </div>
+    {{else}}
+    <div class="container">
+        <p>No hay páginas para mostrar</p>
+    </div>
+     {{/if}}
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
