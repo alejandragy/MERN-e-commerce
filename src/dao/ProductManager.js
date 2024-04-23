@@ -4,6 +4,7 @@ class ProductManager {
 
     async getProducts(qLimit, qFilter, qPage, qSort) {
         try {
+            let products;
             let page = parseInt(qPage) || 1;
             let limit = parseInt(qLimit) || 5;
             let query = {};
@@ -14,13 +15,20 @@ class ProductManager {
                 if (qFilter.status) query.status = qFilter.status;
                 if (qFilter.price) query.price = qFilter.price;
             }
-            let sort = {};
+            if (qSort) {
+                let sortOption = {};
+                if (qSort == 'preciomasbajo') sortOption = {price : 1};
+                if (qSort == 'preciomasalto') sortOption = {price : -1};
 
-            const products = await productModel.paginate(query, { page, limit, lean: true });
+                products = await productModel.paginate(query, { page, limit, lean: true, sort: sortOption});
+            }
+            else{
+                products = await productModel.paginate(query, { page, limit, lean: true});
+            }
 
             return {
                 status: 'success',
-                payload: products.docs,
+                payload: products.docs, //products.docs
                 totalPages: products.totalPages,
                 prevPage: products.prevPage,
                 nextPage: products.nextPage,
@@ -47,13 +55,6 @@ class ProductManager {
             return product;
         } catch (error) {
             console.error('Error al obtener producto por ID', error);
-        }
-    }
-    async getLastProduct() {
-        try{
-            return await productModel.findOne().sort({ _id: -1 });
-        } catch(error){
-            console.error('Error al obtener último producto', error);
         }
     }
 
