@@ -37,19 +37,16 @@ router.post('/', async (req, res) => {
 router.post('/:cartId/product/:productId', async (req, res) => {
     try {
         const cartId = req.params.cartId;
-        const cart = await cartManager.getCartById(cartId);
-
         const productId = req.params.productId;
-        const productToAdd = await productManager.getProductById(productId);
 
-        if (!productToAdd){
+        if (!productId){
             return res.status(400).send({error: 'No existe el producto'});
         }
-        if (!cart){
+        if (!cartId){
             return res.status(400).send({error: 'No existe el carrito'});
         }
 
-        await cartManager.addProductToCart(cart, productToAdd);
+        await cartManager.addProductToCart(cartId, productId);
         return res.status(200).send({message: 'Producto añadido al carrito'});
 
     } catch (error) {
@@ -57,11 +54,39 @@ router.post('/:cartId/product/:productId', async (req, res) => {
     }
 });
 
+router.put('/:cartId', async (req, res) => {
+    try {
+        const cartId = req.params.cartId;
+        const products = req.body.products;
+
+        await cartManager.updateCart(cartId, products);
+        return res.status(200).send({message: 'Carrito actualizado'});
+
+    } catch (error) {
+        return res.status(500).send({ error: 'Error interno del servidor' });
+    }
+});
+
+router.put('/:cartId/product/:productId', async (req, res) => {
+    try {
+        const cartId = req.params.cartId;
+        const productId = req.params.productId;
+        const quantity = req.body.quantity;
+
+        await cartManager.updateQuantity(cartId, productId, quantity);
+        return res.status(200).send({message: 'Cantidad actualizada'});
+
+    } catch (error) {
+        return res.status(500).send({ error: 'Error interno del servidor' });
+    }
+});
+
+
+
 router.delete('/:cartId', async (req, res) => {
     try {
         const cartId = req.params.cartId;
-        const cart = await cartManager.getCartById(cartId);
-        await cartManager.deleteAllProductsFromCart(cart);
+        await cartManager.deleteAllProductsFromCart(cartId);
         return res.status(200).send({message: 'Carrito Vaciado'});
 
     } catch (error) {
@@ -72,12 +97,9 @@ router.delete('/:cartId', async (req, res) => {
 router.delete('/:cartId/product/:productId', async (req, res) => {
     try {
         const cartId = req.params.cartId;
-        const cart = await cartManager.getCartById(cartId);
-
         const productId = req.params.productId;
-        const productToDelete = await productManager.getProductById(productId);
-
-        await cartManager.deleteProductFromCart(cart, productToDelete);
+        
+        await cartManager.deleteProductFromCart(cartId, productId);
         return res.status(200).send({message: 'Producto Eliminado del carrito'});
 
     } catch (error) {

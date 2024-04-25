@@ -43,7 +43,7 @@ class CartsManager {
     async addProductToCart(cartId, productId) {
         try {
             const cart = await cartModel.findById(cartId);
-            const existingProduct = cart.products.find(p => p.product.toString() == productId._id);
+            const existingProduct = cart.products.find(p => p.product.toString() == productId);
 
             if (!cart) {
                 throw new Error('El carrito no existe');
@@ -63,18 +63,36 @@ class CartsManager {
         }
     }
 
-    async deleteAllProductsFromCart(cart){
+    async updateCart(cartId, products){
         try {
-            return await cartModel.findByIdAndUpdate({_id: cart._id}, {products: []});
+            return await cartModel.findByIdAndUpdate({_id: cartId}, {products: products});
+        } catch (error) {
+            console.error(error.message);
+            throw new Error('Error al actualizar carrito');
+        }
+    }
+
+    async updateQuantity(cartId, productId, quantity){
+        try {
+            return await cartModel.findOneAndUpdate({_id: cartId, 'products.product': productId},{$set: { 'products.$.quantity': quantity } });
+        } catch (error) {
+            console.error(error.message);
+            throw new Error('Error al actualizar carrito');
+        }
+    }
+
+    async deleteAllProductsFromCart(cartId){
+        try {
+            return await cartModel.findByIdAndUpdate({_id: cartId}, {products: []});
         } catch (error) {
             console.error(error.message);
             throw new Error('Error al vaciar carrito');
         }
     }
 
-    async deleteProductFromCart(cart, product){
+    async deleteProductFromCart(cartId, productId){
         try {
-            return await cartModel.findOneAndUpdate({_id: cart._id}, {$pull: {products: {product:product._id}}});
+            return await cartModel.findOneAndUpdate({_id: cartId}, {$pull: {products: {product:productId}}});
         } catch (error) {
             console.error(error.message);
             throw new Error('Error al eliminar producto del carrito');
