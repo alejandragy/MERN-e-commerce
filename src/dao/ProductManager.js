@@ -17,18 +17,19 @@ class ProductManager {
             }
             if (qSort) {
                 let sortOption = {};
-                if (qSort == 'preciomasbajo') sortOption = {price : 1};
-                if (qSort == 'preciomasalto') sortOption = {price : -1};
+                if (qSort == 'preciomasbajo') sortOption = { price: 1 };
+                if (qSort == 'preciomasalto') sortOption = { price: -1 };
+                if (qSort == 'newproduct') sortOption = { _id: 'desc' };
 
-                products = await productModel.paginate(query, { page, limit, lean: true, sort: sortOption});
+                products = await productModel.paginate(query, { page, limit, lean: true, sort: sortOption });
             }
-            else{
-                products = await productModel.paginate(query, { page, limit, lean: true});
+            else {
+                products = await productModel.paginate(query, { page, limit, lean: true });
             }
 
             return {
                 status: 'success',
-                payload: products.docs, //products.docs
+                payload: products.docs,
                 totalPages: products.totalPages,
                 prevPage: products.prevPage,
                 nextPage: products.nextPage,
@@ -46,6 +47,26 @@ class ProductManager {
         }
     };
 
+    async getProductsRealTime(qPage) {
+        let page = parseInt(qPage) || 1;
+        let limit = 10;
+        let products = await productModel.paginate({}, { page, limit, lean: true, sort: { _id: 'desc' } });
+
+        return {
+            status: 'success',
+            payload: products.docs,
+            totalPages: products.totalPages,
+            prevPage: products.prevPage,
+            nextPage: products.nextPage,
+            page: products.page,
+            totalPages: products.totalPages,
+            hasPrevPage: products.hasPrevPage,
+            hasNextPage: products.hasNextPage,
+            prevLink: products.hasPrevPage ? `?page=${products.page - 1}` : null,
+            nextLink: products.hasNextPage ? `?page=${products.page + 1}` : null
+        };
+    }
+
     async getProductById(id) {
         try {
             const product = await productModel.findOne({ _id: id });
@@ -62,7 +83,7 @@ class ProductManager {
         const { title, description, price, status, thumbnails, code, stock, category } = product;
 
         try {
-            const existingProduct = await productModel.findOne({code: code});
+            const existingProduct = await productModel.findOne({ code: code });
 
             if (existingProduct) {
                 throw new Error('Ya existe un producto con el mismo código');
@@ -70,12 +91,12 @@ class ProductManager {
 
             if (!title || !description || !code || !price || !stock || !category) {
                 throw new Error('Faltan datos para añadir producto');
-             }
+            }
 
-             if (thumbnails.length == 0){
+            if (thumbnails.length == 0) {
                 throw new Error('Se debe cargar al menos una imagen');
             }
-            
+
             const result = await productModel.create({
                 title,
                 description,
@@ -89,7 +110,7 @@ class ProductManager {
             return result;
         } catch (error) {
             console.error(error.message);
-            if(error.message){
+            if (error.message) {
                 throw new Error(error.message);
             }
             else {

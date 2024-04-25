@@ -13,21 +13,14 @@ class CartsManager {
 
     async getCartById(id) {
         try {
-            const cart = await cartModel.findOne({ _id: id });
+            const cart = await cartModel.findById(id).populate('products.product');
             if (!cart) {
                 throw new Error('El carrito no existe');
             }
+            
             return cart;
         } catch (error) {
             console.error('Error al obtener carrito por ID', error);
-        }
-    }
-
-    async getProductsInCart(cart) {
-        try {
-            return cart ? cart.products : [];
-        } catch (error) {
-            console.error('Error al obtener los productos del carrito', error);
         }
     }
 
@@ -50,7 +43,7 @@ class CartsManager {
     async addProductToCart(cartId, productId) {
         try {
             const cart = await cartModel.findById(cartId);
-            const existingProduct = cart.products.find(p => p.product == productId);
+            const existingProduct = cart.products.find(p => p.product.toString() == productId._id);
 
             if (!cart) {
                 throw new Error('El carrito no existe');
@@ -63,12 +56,22 @@ class CartsManager {
                 cart.products.push({ product: productId, quantity: 1 });
             }
 
-            await cart.save(); //revisar save 
+            await cart.save();
         } catch (error) {
             console.error(error.message);
             throw new Error('Error al agregar producto');
         }
 
+    }
+
+    async deleteProductInCart(cartId, productId){
+        try {
+            const cart = await cartModel.findById(cartId);
+
+        } catch (error) {
+            console.error(error.message);
+            throw new Error('Error al eliminar producto del carrito');
+        }
     }
 
 }

@@ -41,7 +41,7 @@ function createProduct() {
 
 
 function showNewProductDOM() {
-    fetch('/api/products')
+    fetch('/api/products/realtime')
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -54,11 +54,10 @@ function showNewProductDOM() {
         .then(data => {
             console.log(data)
             if (data.payload.length > 0) {
-                const newProduct = data.payload[data.payload.length - 1];
+                const newProduct = data.payload[0];
                 console.log(newProduct)
                 console.log('El último producto es', newProduct);
                 socket.emit('newProductAdded',  newProduct);
-                //esto no va a funcionar nunca porque el paginate me limita las vistas a 5 y data está devolviendo esos 5 elementos primeros
             } else {
                 console.error('No hay productos');
             }
@@ -91,7 +90,7 @@ function deleteProduct(productId) {
 }
 
 socket.on('newProductAddedToDOM', data => {
-    cardsDiv.innerHTML += (` 
+    const newProductDOM = (`
     <div class="card-product" id="${data._id}">
         <picture class="card-product__img">
         <img src="${data.thumbnails[0]}" alt="${data.title}">
@@ -104,9 +103,10 @@ socket.on('newProductAddedToDOM', data => {
             <button><img src="img/icons/ver.png" alt="icono de ver"></button>
         </div>
         <div class="card-product__btn card-product__btn--delete">
-            <button onclick="deleteProduct(${data._id})""><img src="img/icons/borrar.png" alt="icono de ver"></button>
+            <button onclick="deleteProduct('${data._id}')"><img src="img/icons/borrar.png" alt="icono de ver"></button>
         </div>
     </div>`);
+    cardsDiv.insertAdjacentHTML('afterbegin', newProductDOM);
     
     productForm.reset();
 })

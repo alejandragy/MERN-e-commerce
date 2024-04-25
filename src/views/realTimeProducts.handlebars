@@ -35,7 +35,8 @@
             <button class="form__btn">Añadir producto</button>
         </form>
     </div>
-    {{#if isValid}}
+    <div class="container">
+        {{#if isValid}}
     <div class="cards-products" id="cardsDiv">
         {{#each products}}
         <div class="card-product" id="{{this._id}}">
@@ -55,7 +56,13 @@
         </div>
         {{/each}}
     </div>
+    {{else}}
     <div class="container">
+        <p>No hay páginas para mostrar</p>
+    </div>
+    {{/if}}
+
+     <div class="container">
         {{#if hasPrevPage}}
         <a href="{{this.prevLink}}">Anterior</a>
         {{/if}}
@@ -63,11 +70,7 @@
         <a href="{{this.nextLink}}">Siguiente</a>
         {{/if}}
     </div>
-    {{else}}
-    <div class="container">
-        <p>No hay páginas para mostrar</p>
     </div>
-     {{/if}}
 </div>
 
 <script src="/socket.io/socket.io.js"></script>

@@ -132,3 +132,17 @@
     transition: transform 0.3s;
     font-size: 1rem;
 }
+
+
+/*vista de nuevo producto en realtimeproducts*/
+.new-product{
+    margin-top: 10px;
+}
+
+.new-product h2 {
+    text-align: center;
+    font-size: 1.3rem;
+}
+.card-new-product{
+    width: 230px;
+}

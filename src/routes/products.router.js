@@ -7,7 +7,6 @@ const manager = new ProductManager();
 
 router.get('/', async (req, res) => {
     try {
-
         let productsData = await manager.getProducts();
 
         return res.status(200).send(productsData);
@@ -15,6 +14,17 @@ router.get('/', async (req, res) => {
         return res.status(500).send({ error: 'Error interno del servidor' })
     }
 });
+
+router.get('/realtime', async (req, res) => {
+    try {
+        let productsData = await manager.getProductsRealTime();
+
+        return res.status(200).send(productsData);
+    } catch (error) {
+        return res.status(500).send({ error: 'Error interno del servidor' })
+    }
+});
+
 
 router.get('/:productId', async (req, res) => {
     try {
