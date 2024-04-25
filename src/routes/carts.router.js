@@ -57,6 +57,18 @@ router.post('/:cartId/product/:productId', async (req, res) => {
     }
 });
 
+router.delete('/:cartId', async (req, res) => {
+    try {
+        const cartId = req.params.cartId;
+        const cart = await cartManager.getCartById(cartId);
+        await cartManager.deleteAllProductsFromCart(cart);
+        return res.status(200).send({message: 'Carrito Vaciado'});
+
+    } catch (error) {
+        return res.status(500).send({ error: 'Error interno del servidor' });
+    }
+});
+
 router.delete('/:cartId/product/:productId', async (req, res) => {
     try {
         const cartId = req.params.cartId;
@@ -65,7 +77,8 @@ router.delete('/:cartId/product/:productId', async (req, res) => {
         const productId = req.params.productId;
         const productToDelete = await productManager.getProductById(productId);
 
-        await cartManager.deleteProductInCart(cart, productToDelete);
+        await cartManager.deleteProductFromCart(cart, productToDelete);
+        return res.status(200).send({message: 'Producto Eliminado del carrito'});
 
     } catch (error) {
         return res.status(500).send({ error: 'Error interno del servidor' });

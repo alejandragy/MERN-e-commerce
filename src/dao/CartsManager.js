@@ -61,13 +61,20 @@ class CartsManager {
             console.error(error.message);
             throw new Error('Error al agregar producto');
         }
-
     }
 
-    async deleteProductInCart(cartId, productId){
+    async deleteAllProductsFromCart(cart){
         try {
-            const cart = await cartModel.findById(cartId);
+            return await cartModel.findByIdAndUpdate({_id: cart._id}, {products: []});
+        } catch (error) {
+            console.error(error.message);
+            throw new Error('Error al vaciar carrito');
+        }
+    }
 
+    async deleteProductFromCart(cart, product){
+        try {
+            return await cartModel.findOneAndUpdate({_id: cart._id}, {$pull: {products: {product:product._id}}});
         } catch (error) {
             console.error(error.message);
             throw new Error('Error al eliminar producto del carrito');
