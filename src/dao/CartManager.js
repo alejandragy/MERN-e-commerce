@@ -1,6 +1,6 @@
 import cartModel from './models/cartModel.js';
 
-class CartsManager {
+class CartManager {
 
     async getCarts() {
         try {
@@ -11,9 +11,9 @@ class CartsManager {
         }
     };
 
-    async getCartById(id) {
+    async getCartById(cartId) {
         try {
-            const cart = await cartModel.findById(id).populate('products.product');
+            const cart = await cartModel.findById(cartId).populate('products.product');
             if (!cart) {
                 throw new Error('El carrito no existe');
             }
@@ -101,4 +101,4 @@ class CartsManager {
 
 }
 
-export default CartsManager;
+export default CartManager;

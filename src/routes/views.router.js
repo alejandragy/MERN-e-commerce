@@ -1,14 +1,44 @@
 import { Router } from "express";
 import ProductManager from "../dao/ProductManager.js";
+import UserManager from "../dao/UserManager.js";
 
 const router = Router();
 const productManager = new ProductManager();
+const userManager = new UserManager();
 
 router.get('/', (req, res) => {
     res.render('index',
         {
             title: 'Una tienda de plantitas',
+            user: req.session.user,
         });
+});
+
+router.get('/register', async (req, res) => {
+    try{
+        res.render('register',
+        {
+            title: 'Registro',
+            style: 'register.css',
+            failRegister: req.session.failRegister ?? false,
+        });
+    } catch (error) {
+        return res.redirect('/register');
+    }
+});
+
+router.get('/login', async (req, res) => {
+    try{
+        res.render('login',
+        {
+            title: 'Iniciar Sesión',
+            style: 'login.css',
+            failLogin: req.session.failLogin ?? false,
+        });
+    }catch (error){
+        req.session.failLogin = true;
+        return res.status(500).send({ error: 'Error interno del servidor' })
+    }
 });
 
 

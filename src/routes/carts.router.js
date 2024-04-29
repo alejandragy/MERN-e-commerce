@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import CartsManager from '../dao/CartsManager.js';
+import CartManager from '../dao/CartManager.js';
 import ProductManager from '../dao/ProductManager.js';
 
 const router = Router();
-const cartManager = new CartsManager();
+const cartManager = new CartManager();
 const productManager = new ProductManager();
 
 router.get('/', async (req, res) => {

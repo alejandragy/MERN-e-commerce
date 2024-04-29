@@ -48,7 +48,6 @@ router.post('/', uploader.array('thumbnails', 2), async (req, res) => {
         await manager.addProduct({ title, description, code, price, status, stock, category, thumbnails: thumbnailsProcessedRoutes });
         return res.status(201).send({ message: `Producto -${title}- añadido` });
     } catch (error) {
-        //console.log('EL ERROR RETORNADO A VER :o', error.message) //pruebita
         if (error.message != 'Error interno del servidor') {
             console.error(error)
             return res.status(400).send({ error: error.message });

@@ -1,0 +1,32 @@
+<div>
+     <div>
+        <h1>Registro</h1>
+    </div>
+
+    <form action="/api/users/register" method="post" id="registerForm" class="register-form">
+        <label for="first_name">Nombre</label>
+        <input type="text" name="first_name" required>
+
+        <label for="last_name">Apellido</label>
+        <input type="text" name="last_name" required>
+
+        <label for="age">Edad</label>
+        <input type="number" name="age" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" required>
+
+        <label for="password">Contraseña</label>
+        <input type="text" name="password" required>
+
+        <button class="register-form__btn">Registrarme</button>
+    </form>
+
+    <div>
+        <p>¿Ya tenés una cuenta?</p> <a href="/login">Iniciar sesión</a>
+    </div>
+
+    {{#if failRegister}}
+    <p>error en el registro</p>
+    {{/if}}
+</div>
