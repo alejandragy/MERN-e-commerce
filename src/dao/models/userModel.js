@@ -22,7 +22,11 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         require: true
-    }
+    },
+    rol: {
+        type: String,
+        default: 'usuario'
+    },
 })
 
 const userModel = mongoose.model(userCollection, userSchema);

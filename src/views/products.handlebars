@@ -1,3 +1,42 @@
+<div class="navbar">
+    <nav>
+        <div class="navbar-logo">
+            <img src="img/logo/logo.png" alt="">
+        </div>
+        <div class="navbar-search">
+            <form class="searchbar">
+                <input type="text">
+                <button><img src="img/icons/lupa.png" alt=""></button>
+            </form>
+            <ul>
+                <li class="navbar__item"><a href="/">Inicio</a></li>
+                <li class="navbar__item"><a href="/products">Productos</a></li>
+                <li class="navbar__item"><a href="/">Sobre nosotros</a></li>
+                <li class="navbar__item"><a href="/">Contacto</a></li>
+            </ul>
+        </div>
+
+        <div class="navbar-user">
+            <div class="navbar-user__cart">
+                <a href="/login"><img src="img/icons/carrito-de-compras.png" alt=""></a>
+            </div>
+            <ul>
+                {{#if notUser}}
+                <li class="navbar__item"><a href="/login">Iniciar Sesión</a></li>
+                {{/if}}
+
+                {{#if user}}
+                <li class="navbar__item">
+                    <p>Hola {{user.first_name}}</p>
+                    <p class="navbar__item navbar__item-logout"><a href="/logout">Cerrar sesión</a></p>
+                </li>
+                {{/if}}
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
 <div class="container">
     {{#if isValid}}
     <div class="cards-products" id="cardsDiv">

@@ -4,3 +4,89 @@
     box-sizing: border-box;
     font-family: "Vazirmatn", sans-serif;
   }
+
+  .navbar{
+    display: flex;
+  }
+
+  .navbar nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2.5rem;
+    background-color: #f7f3f3;
+  }
+
+  .navbar img{
+    width: 150px;
+  }
+
+  .navbar ul{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .navbar__item{
+    list-style-type: none;
+    font-size: 1.1rem;
+  }
+  .navbar__item a{
+    text-decoration: none;
+    color: #313030;
+  }
+
+  .navbar-search{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .searchbar{
+    display: flex;
+  }
+
+  .searchbar input{
+    border-radius: 5px 0 0 5px;
+    border: 0.5px solid #5f5f5f;
+    outline: none;
+    padding: 0 5px;
+    font-size: 1rem;
+    width: 80%;
+  }
+
+  .searchbar button{
+    border-radius: 0 5px 5px 0;
+    border: 0.5px solid #5f5f5f;
+    border-left: none;
+    background-color: #fff;
+    width: 20%;
+  }
+
+  .searchbar img{
+    width: 30px;
+    padding: 5px;
+    padding-top: 10px;
+  }
+
+  .navbar-user{
+    width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .navbar-user ul{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .navbar-user__cart img{
+    width: 30px;
+  }
+
+  .navbar__item-logout a{
+    color: #bababa;
+    font-size: 0.9rem;
+  }

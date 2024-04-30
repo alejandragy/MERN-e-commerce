@@ -1,15 +1,16 @@
-import { Router } from "express";
-import ProductManager from "../dao/ProductManager.js";
-import UserManager from "../dao/UserManager.js";
+import { Router } from 'express';
+import ProductManager from '../dao/ProductManager.js';
+
+import auth from '../middlewares/auth.js';
 
 const router = Router();
 const productManager = new ProductManager();
-const userManager = new UserManager();
 
 router.get('/', (req, res) => {
     res.render('index',
         {
             title: 'Una tienda de plantitas',
+            notUser: req.session.user ? false : true,
             user: req.session.user,
         });
 });
@@ -21,6 +22,8 @@ router.get('/register', async (req, res) => {
             title: 'Registro',
             style: 'register.css',
             failRegister: req.session.failRegister ?? false,
+            notUser: req.session.user ? false : true,
+            user: req.session.user,
         });
     } catch (error) {
         return res.redirect('/register');
@@ -34,12 +37,31 @@ router.get('/login', async (req, res) => {
             title: 'Iniciar Sesión',
             style: 'login.css',
             failLogin: req.session.failLogin ?? false,
+            notUser: req.session.user ? false : true,
+            user: req.session.user,
         });
     }catch (error){
         req.session.failLogin = true;
         return res.status(500).send({ error: 'Error interno del servidor' })
     }
 });
+
+router.get('/logout', async (req, res) => {
+    try{
+        req.session.destroy(error => {
+            if (!error) {
+                return res.redirect('/');;
+            }
+            res.send({
+                status: 'Logout ERROR',
+                body: error,
+            });
+        });
+    }catch (error){
+        req.session.failLogin = true;
+        return res.status(500).send({ error: 'Error interno del servidor' });
+    }
+    });
 
 
 router.get('/products', async (req, res) => {
@@ -84,7 +106,9 @@ router.get('/products', async (req, res) => {
             hasPrevPage: productsData.hasPrevPage,
             hasNextPage: productsData.hasNextPage,
             isValid: !(productsData.page <= 0 || productsData.page > productsData.totalPages),
-            currentLimit: limit
+            currentLimit: limit,
+            notUser: req.session.user ? false : true,
+            user: req.session.user,
         });
 
     } catch (error) {
@@ -92,7 +116,7 @@ router.get('/products', async (req, res) => {
     }
 });
 
-router.get('/realtimeproducts', async (req, res) => {
+router.get('/realtimeproducts', auth, async (req, res) => {
     try {
         const baseURL = 'http://localhost:8080/realtimeproducts';
         const page = parseInt(req.query.page);
@@ -108,7 +132,9 @@ router.get('/realtimeproducts', async (req, res) => {
             nextLink: `${baseURL}${productsData.nextLink}`,
             hasPrevPage: productsData.hasPrevPage,
             hasNextPage: productsData.hasNextPage,
-            isValid: !(productsData.page <= 0 || productsData.page > productsData.totalPages)
+            isValid: !(productsData.page <= 0 || productsData.page > productsData.totalPages),
+            notUser: req.session.user ? false : true,
+            user: req.session.user,
         });
     } catch (error) {
         return res.status(500).send({ error: 'Error interno del servidor' })

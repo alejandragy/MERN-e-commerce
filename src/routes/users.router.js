@@ -18,21 +18,21 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-try{
-    const email = req.body.email;
-    const pass = req.body.password;
-    const user = await userManager.getUserByEmail(email);
-    if (!user || pass !== user.password){
+    try{
+        const email = req.body.email;
+        const pass = req.body.password;
+        const user = await userManager.getUserByEmail(email);
+        if (!user || pass !== user.password){
+            req.session.failLogin = true;
+            return res.redirect('/login');
+        } 
+        delete user.password;
+        req.session.user = user;
+        return res.redirect('/products');
+    }catch (error){
         req.session.failLogin = true;
-        return res.redirect('/login');
-    } 
-    delete user.password;
-    req.session.user = user;
-    return res.redirect('/');
-}catch (error){
-    req.session.failLogin = true;
-    return res.status(500).send({ error: 'Error interno del servidor' });
-}
-});
+        return res.status(500).send({ error: 'Error interno del servidor' });
+    }
+    });
 
 export default router;

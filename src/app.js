@@ -38,7 +38,7 @@ app.use(cookieParser());
 app.use(session({ 
     store: mongoStore.create({
         mongoUrl: uri,
-        ttl: 15,
+        ttl: 60,
     }),
     secret: 'asd1966qwer',
     resave: false,
