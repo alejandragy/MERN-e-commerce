@@ -6,6 +6,7 @@ import session from 'express-session';
 import mongoStore from 'connect-mongo';
 
 import __dirname from './utils.js';
+import initializatePassport from './config/passport.config.js';
 
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
@@ -13,6 +14,7 @@ import viewsRouter from './routes/views.router.js';
 import usersRouter from './routes/users.router.js';
 
 import { Server } from 'socket.io';
+import passport from 'passport';
 
 const app = express();
 const PORT = 8080;
@@ -38,12 +40,17 @@ app.use(cookieParser());
 app.use(session({ 
     store: mongoStore.create({
         mongoUrl: uri,
-        ttl: 60,
     }),
     secret: 'asd1966qwer',
     resave: false,
     saveUninitialized: false
 }))
+
+//passport
+initializatePassport();
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 //routes
 app.use('/', viewsRouter);

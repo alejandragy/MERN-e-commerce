@@ -1,38 +1,55 @@
 import { Router } from 'express';
-import UserManager from '../dao/UserManager.js';
+
+import passport from 'passport';
 
 const router = Router();
-const userManager = new UserManager();
 
-
-router.post('/register', async (req, res) => {
-    try {
-        const { first_name, last_name, email, age, password } = req.body;
-        await userManager.createUser({ first_name, last_name, email, age, password });
-        req.session.failRegister = false;
-        return res.redirect('/login')
-    } catch (error) {
-        req.session.failRegister = true;
-        return res.status(500).send({ error: 'Error interno del servidor' });
-    }
+router.post('/register', passport.authenticate('register', { failureRedirect: '/api/users/failregister' }), async (req, res) => {
+    res.redirect('/login');
 });
 
-router.post('/login', async (req, res) => {
-    try{
-        const email = req.body.email;
-        const pass = req.body.password;
-        const user = await userManager.getUserByEmail(email);
-        if (!user || pass !== user.password){
-            req.session.failLogin = true;
-            return res.redirect('/login');
-        } 
-        delete user.password;
-        req.session.user = user;
-        return res.redirect('/products');
-    }catch (error){
-        req.session.failLogin = true;
-        return res.status(500).send({ error: 'Error interno del servidor' });
-    }
+router.get('/failregister', (req, res) => {
+    res.status(400).send({
+        status: 'error',
+        message: 'Registro fallido'
     });
+});
+
+router.post('/login', passport.authenticate('login', { failureRedirect: '/api/users/faillogin' }), (req, res) => {
+    if (!req.user) {
+        return res.send(401).send({
+            status: 'error',
+            message: 'Error login'
+        })
+    }
+
+    req.session.user = {
+        first_name: req.user.first_name,
+        last_name: req.user.last_name,
+        email: req.user.email,
+        age: req.user.age
+    }
+
+    res.redirect('/products');
+});
+
+router.get('/faillogin', (req, res) => {
+    res.status(400).send({
+        status: 'error',
+        message: 'Login fallido'
+    })
+})
+
+router.get('/logout', (req, res) => {
+    req.session.destroy(error => {
+        if (!error) {
+            return res.redirect('/');;
+        }
+        res.send({
+            status: 'Logout ERROR',
+            body: error,
+        });
+    });
+});
 
 export default router;
