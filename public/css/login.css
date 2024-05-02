@@ -9,10 +9,58 @@
 }
 
 .login__container{
-    background-color:#0c584f;
+    background-color:#f7f3f3;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    border-radius: 5px;
+}
+
+.login__form-container{
+    height: 400px;
+    width: 500px;
+    padding: 30px 100px;
+}
+
+.login__form{
+    display: flex;
+    flex-direction: column;
+}
+.login__form label{
+    margin-top: 15px;
+}
+
+.login__form input{
+    width: 300px;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    margin-top: 2px;
+}
+
+.login__btn{
+    width: 300px;
+    margin-top: 20px;
+    height: 35px;
+    background-color: #0c584f ;
+    border: none;
+    color: #ffffff;
+    font-size: 1rem;
+    border-radius: 3px;
+}
+
+.login__btn--github{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    gap:0.5rem;
+    background-color: #ffffff;
+    color: #000000 ;
+}
+.login__btn--github img{
+    width: 20px;
 }
 
 .login__img{
@@ -24,4 +72,14 @@
 
 .login__img img{
     width: 100%;
+}
+
+.login__new-user{
+    display: flex;
+    margin-top: 20px;
+    gap:0.5rem;
+}
+
+.login__new-user a{
+    color: #0c584f;
 }

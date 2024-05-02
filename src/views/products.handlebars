@@ -1,40 +1,37 @@
-<div class="navbar">
-    <nav>
-        <div class="navbar-logo">
-            <img src="img/logo/logo.png" alt="">
-        </div>
+<nav class="navbar">
+    <div class="navbar-logo">
+        <img src="img/logo/logo.png" alt="">
+    </div>
 
-        <ul class="navbar-links">
-            <li class="navbar-links__item">
-                <a href="/">Inicio</a>
+    <ul class="navbar-links">
+        <li class="navbar-links__item"><a href="/">Inicio</a></li>
+        <li class="navbar-links__item"><a href="/products">Productos</a></li>
+        <li class="navbar-links__item"><a href="/">Sobre nosotros</a></li>
+        <li class="navbar-links__item"><a href="/">Contacto</a></li>
+    </ul>
+
+    <div class="navbar-user">
+        <ul class="navbar-user__user">
+            {{#if notUser}}
+            <li class="navbar-user__item"><a href="/login"><img src="img/icons/usuario.png" alt=""></a></li>
+            {{/if}}
+
+            {{#if user}}
+            <li class="navbar-user__item navbar-user__item--login">
+                <a href="/"><img src="img/icons/usuario.png" alt=""></a>
+                <div>
+                    <p>Hola {{user.first_name}}</p>
+                    <a class="navbar-user__item navbar__item--logout" href="/api/users/logout">Cerrar sesión</a>
+                </div>
             </li>
-            <li class="navbar-links__item"><a href="/products">Productos</a></li>
-            <li class="navbar-links__item"><a href="/">Sobre nosotros</a></li>
-            <li class="navbar-links__item"><a href="/">Contacto</a></li>
+            {{/if}}
         </ul>
-
-        <div class="navbar-user">
-            <ul class="navbar-user__user">
-                {{#if notUser}}
-                <li class="navbar-user__item"><a href="/login"><img src="img/icons/usuario.png" alt=""></a></li>
-                {{/if}}
-
-                {{#if user}}
-                <li class="navbar-user__item navbar-user__item--login">
-                    <a href="/"><img src="img/icons/usuario.png" alt=""></a>
-                    <div>
-                        <p>Hola {{user.first_name}}</p>
-                        <a class="navbar-user__item navbar__item--logout" href="/api/users/logout">Cerrar sesión</a>
-                    </div>
-                </li>
-                {{/if}}
-            </ul>
-            <div class="navbar-user__cart">
-                <a href="/login"><img src="img/icons/carrito-de-compras.png" alt=""></a>
-            </div>
+        <div class="navbar-user__cart">
+            <a href="/login"><img src="img/icons/carrito-de-compras.png" alt=""></a>
         </div>
-    </nav>
-</div>
+    </div>
+</nav>
+
 
 <div class="container">
     {{#if isValid}}

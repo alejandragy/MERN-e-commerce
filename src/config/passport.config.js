@@ -5,12 +5,6 @@ import GitHubStrategy from 'passport-github2';
 import userModel from '../dao/models/userModel.js';
 import { createHash, isValidPassword } from '../utils.js';
 
-/*
-App ID: 889441
-Client ID: Iv1.13f5d3062bf07de1
-ccliensecret: ecf907fe941ec2a2c17027af4122c25b47acceb4
-*/
-
 const localStrategy = local.Strategy;
 const initializatePassport = () => {
     const CLIENT_ID = 'Iv1.13f5d3062bf07de1';
