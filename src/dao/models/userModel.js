@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 
 const userCollection = 'users';
 const userSchema = mongoose.Schema({
+    username: {
+        type: String,
+    },
     first_name: {
         type: String,
         require: true

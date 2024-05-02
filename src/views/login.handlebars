@@ -3,61 +3,69 @@
         <div class="navbar-logo">
             <img src="img/logo/logo.png" alt="">
         </div>
-        <div class="navbar-search">
-            <form class="searchbar">
-                <input type="text">
-                <button><img src="img/icons/lupa-blanco.png" alt=""></button>
-            </form>
-            <ul>
-                <li class="navbar__item"><a href="/">Inicio</a></li>
-                <li class="navbar__item"><a href="/products">Productos</a></li>
-                <li class="navbar__item"><a href="/">Sobre nosotros</a></li>
-                <li class="navbar__item"><a href="/">Contacto</a></li>
-            </ul>
-        </div>
+
+        <ul class="navbar-links">
+            <li class="navbar-links__item">
+                <a href="/">Inicio</a>
+            </li>
+            <li class="navbar-links__item"><a href="/products">Productos</a></li>
+            <li class="navbar-links__item"><a href="/">Sobre nosotros</a></li>
+            <li class="navbar-links__item"><a href="/">Contacto</a></li>
+        </ul>
 
         <div class="navbar-user">
-            <div class="navbar-user__cart">
-                <a href="/login"><img src="img/icons/carrito-de-compras.png" alt=""></a>
-            </div>
-            <ul>
+            <ul class="navbar-user__user">
                 {{#if notUser}}
-                <li class="navbar__item"><a href="/login">Iniciar sesión</a></li>
+                <li class="navbar-user__item"><a href="/login"><img src="img/icons/usuario.png" alt=""></a></li>
                 {{/if}}
 
                 {{#if user}}
-                <li class="navbar__item">
-                    <p>Hola {{user.first_name}}</p>
-                    <p class="navbar__item navbar__item-logout"><a href="/api/users/logout">Cerrar sesión</a></p>
+                <li class="navbar-user__item navbar-user__item--login">
+                    <a href="/"><img src="img/icons/usuario.png" alt=""></a>
+                    <div>
+                        <p>Hola {{user.first_name}}</p>
+                        <a class="navbar-user__item navbar__item--logout" href="/api/users/logout">Cerrar sesión</a>
+                    </div>
                 </li>
                 {{/if}}
-
             </ul>
+            <div class="navbar-user__cart">
+                <a href="/login"><img src="img/icons/carrito-de-compras.png" alt=""></a>
+            </div>
         </div>
     </nav>
 </div>
 
-<div>
-    <div>
-        <h1>Iniciar sesión</h1>
+<div class="login__page">
+    <div class="login__container">
+        <div>
+            <div>
+                <h1>Iniciar sesión</h1>
+            </div>
+
+            <form action="/api/users/login" method="post" id="loginForm" class="login-form">
+                <label for="email">Usuario(E-mail)</label>
+                <input type="email" name="email" required>
+
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" required>
+
+                <button class="login-form__btn">Iniciar Sesión</button>
+            </form>
+            <div>
+                <a href="/api/users/github">
+                    <button>Entrar con Github</button>
+                </a>
+            </div>
+
+            <div>
+                <p>¿Necesitás una cuenta?</p> <a href="/register">Registrarse</a>
+            </div>
+
+            {{#if failLogin}}
+            <p>error al ingresar</p>
+            {{/if}}
+        </div>
+        <div class="login__img"></div>
     </div>
-
-    <form action="/api/users/login" method="post" id="loginForm" class="login-form">
-        <label for="email">Usuario(E-mail)</label>
-        <input type="email" name="email" required>
-
-        <label for="password">Contraseña</label>
-        <input type="password" name="password" required>
-
-        <button class="login-form__btn">Iniciar Sesión</button>
-    </form>
-
-    <div>
-        <p>¿Necesitás una cuenta?</p> <a href="/register">Registrarse</a>
-    </div>
-
-    {{#if failLogin}}
-    <p>error al ingresar</p>
-    {{/if}}
-
 </div>
