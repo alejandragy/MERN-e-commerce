@@ -8,9 +8,11 @@
 
 /*navbar*/
 .navbar {
+  position: relative; 
   box-shadow: 0px 1px 8px rgba(182, 182, 182, 0.5);
   width: 100%;
   display: flex;
+  flex-direction: column; 
   justify-content: space-evenly;
   align-items: center;
   background-color: #f7f3f3;
@@ -18,19 +20,22 @@
 
 /*navbar logo*/
 .navbar-logo{
-  padding: 20px 0 ;
+  padding: 20px 0 0 0 ; 
+  margin-top:60px; 
 }
 
 .navbar-logo img{
-  width: 200px;
+  width: 300px; 
 }
 
 
 /*navbar links*/
 .navbar-links{
   display: flex;
+  flex-direction: column; 
   list-style: none;
   gap: 2rem;
+  padding-bottom: 30px; 
 }
 
 .navbar-links__item{
@@ -71,8 +76,13 @@
 /*navbar user*/
 .navbar-user{
   display: flex;
-  gap: 1rem;
-  width: 200px;
+  position: absolute; 
+  left: 0;
+  top: 0;
+  border-bottom: #acacac solid 1px ; 
+  gap: 50%;
+  width: 100%; 
+  padding: 10px 100px; 
   align-items: center;
   justify-content: center;
 }
@@ -94,6 +104,9 @@
   align-items: center;
   gap: 0 0.5rem;
 }
+.navbar-user__item--login div{
+  width: 150px; 
+}
 
 .navbar__item--logout{
   font-size: 0.8rem;
@@ -106,4 +119,48 @@
 .navbar-user__cart img{
   width: 35px;
   padding-top: 5px;
+}
+
+
+@media(min-width:768px){
+  
+/*navbar*/
+.navbar {
+  position:relative;
+  flex-direction: row;
+}
+
+
+/*navbar logo*/
+.navbar-logo{
+  padding: 20px 0;
+  margin-top:0;
+}
+
+.navbar-logo img{
+  width: 200px; 
+}
+
+
+/*navbar links*/
+.navbar-links{
+  flex-direction: row;
+  padding-bottom: 0; 
+}
+
+
+/*navbar user*/
+.navbar-user{
+  position: relative;
+  left: 0; /**/
+  top: 0;/**/
+  border-bottom: none;
+  gap: 1rem;
+  width: 200px;
+  padding: 0;
+}
+
+.navbar-user__item--login div{
+  width: auto;
+}
 }

@@ -1,14 +1,17 @@
 import passport from 'passport';
 import local from 'passport-local';
+import dotenv from 'dotenv';
 import GitHubStrategy from 'passport-github2';
 
 import userModel from '../dao/models/userModel.js';
 import { createHash, isValidPassword } from '../utils.js';
 
+dotenv.config();
 const localStrategy = local.Strategy;
 const initializatePassport = () => {
-    const CLIENT_ID = 'Iv1.13f5d3062bf07de1';
-    const SECRET_ID = 'ecf907fe941ec2a2c17027af4122c25b47acceb4';
+    const CLIENT_ID = process.env.CLIENT_ID;
+    const SECRET_ID = process.env.SECRET_ID;
+    console.log('client id', CLIENT_ID)
 
     passport.use('github', new GitHubStrategy({
         clientID: CLIENT_ID,
